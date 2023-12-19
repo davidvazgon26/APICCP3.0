@@ -19,6 +19,8 @@
   "homepage": "https://github.com/davidvazgon26/APICCP3.0#readme",
   "dependencies": {
     "express": "^4.18.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
     "xlsx": "^0.18.5"
   }
 }

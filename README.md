@@ -10,3 +10,11 @@ fue mi decicion hacerlo en espanol.
 TAmbien incluyo el acceso a los catalogos de CCP 3.0 del SAT
 
 [Enlace Catalogos: ](http://omawww.sat.gob.mx/tramitesyservicios/Paginas/complemento_carta_porte.htm)
+
+Se utiliza express para habilitar nuestro servicio de exposicion de API
+
+npm i express
+
+Se utiliza Swagger como documentador de la API
+
+npm install swagger-ui-express swagger-jsdoc
