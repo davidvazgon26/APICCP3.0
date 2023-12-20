@@ -1,3 +1,5 @@
+const leerExcel = require("./utils.js");
+
 const express = require("express");
 const swaggerUi = require("swagger-ui-express");
 const specs = require("./swagger");
@@ -18,8 +20,24 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
  *       200:
  *         description: Respuesta exitosa
  */
-app.get("/documentacion", (req, res) => {
-  res.send("¡Hola desde la ruta de documentacion!");
+// app.get("/documentacion", (req, res) => {
+//   res.send("¡Hola desde la ruta de documentacion!");
+// });
+
+/**
+ * @swagger
+ * /catalogos:
+ *   get:
+ *     summary: Muestra el listado de los catalogos para CCP 3.0
+ *     description: Muestra en formato de lista todos los catalogos a los que puedes acceder desde esta API
+ *     responses:
+ *       200:
+ *         description: Respuesta exitosa
+ */
+app.get("/catalogos", (req, res) => {
+  let result = leerExcel("./assets/CatalogosCartaPorte30.xls");
+  console.log(result);
+  res.send(result);
 });
 
 app.get("/", (req, res) => {
