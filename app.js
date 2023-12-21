@@ -1,4 +1,4 @@
-const leerExcel = require("./utils.js");
+const { leerExcel, obtenerListaCatalogos } = require("./utils.js");
 
 const express = require("express");
 const swaggerUi = require("swagger-ui-express");
@@ -6,6 +6,8 @@ const specs = require("./swagger");
 
 const app = express();
 const port = 3000;
+
+const rutaArchivo1 = "./assets/CatalogosCartaPorte30.xls";
 
 // Agrega la documentación Swagger
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
@@ -32,12 +34,30 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
  *     description: Muestra en formato de lista todos los catalogos a los que puedes acceder desde esta API
  *     responses:
  *       200:
- *         description: Respuesta exitosa
+ *         description: Arreglo con los nombres de los catalogos disponibles
  */
 app.get("/catalogos", (req, res) => {
-  let result = leerExcel("./assets/CatalogosCartaPorte30.xls");
+  let result = obtenerListaCatalogos(rutaArchivo1);
   console.log(result);
   res.send(result);
+});
+
+/**
+ * @swagger
+ * /catalogo:
+ *   get:
+ *     summary: Indica el nombre del catalogo a obtener
+ *     description: Muestra la informacion contenida en el catalogo pasado (solo )
+ *     responses:
+ *       200:
+ *         description: Respuesta exitosa
+ */
+app.get("/catalogo/:nombre", (req, res) => {
+  const result = req.params.nombre;
+  console.log(result);
+  // let result = obtenerListaCatalogos(rutaArchivo1);
+  // console.log(result);
+  res.send(req.params.nombre);
 });
 
 app.get("/", (req, res) => {
