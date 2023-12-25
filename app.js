@@ -47,7 +47,15 @@ app.get("/catalogos", (req, res) => {
  * /catalogo:
  *   get:
  *     summary: Indica el nombre del catalogo a obtener
- *     description: Muestra la informacion contenida en el catalogo pasado (solo )
+ *     description: Muestra la informacion contenida en el catalogo pasado (solo nombre, no incluyas c_ )
+ 
+*     parameters:
+ *       - in: path
+ *         name: nombre
+ *         description: Nombre del catálogo a obtener
+ *         required: true
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
  *         description: Respuesta exitosa
@@ -58,10 +66,6 @@ app.get("/catalogo/:nombre", (req, res) => {
   // let result = obtenerListaCatalogos(rutaArchivo1);
   // console.log(result);
   res.send(req.params.nombre);
-});
-
-app.get("/", (req, res) => {
-  res.send("Aqui la respuesta al request");
 });
 
 app.listen(port, () => {

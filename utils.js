@@ -1,6 +1,10 @@
 const XLSX = require("xlsx");
+const libroExcel = {};
+const libroExcelHoja = [];
 
 function leerPestanaExcel(catalogoBuscado) {
+  if (libroExcelHoja == null) return "No has obtenido el listado aun";
+
   const hoja = libroExcelHoja[0];
   const dataExcel = XLSX.utils.sheet_to_json(libroExcel.Sheets[hoja]);
 
@@ -10,11 +14,11 @@ function leerPestanaExcel(catalogoBuscado) {
 }
 
 function obtenerListaCatalogos(rutaArchivo) {
-  const libroExcel = XLSX.readFile(rutaArchivo);
-  const libroExcelHoja = libroExcel.SheetNames;
+  // Ruta al archivo Excel
+  libroExcel = XLSX.readFile(rutaArchivo);
+  //Obtener listado de pestanas
+  libroExcelHoja = libroExcel.SheetNames;
   return libroExcelHoja;
 }
-
-// leerExcel("./assets/CatalogosCartaPorte30.xls");
 
 module.exports = { leerPestanaExcel, obtenerListaCatalogos };
